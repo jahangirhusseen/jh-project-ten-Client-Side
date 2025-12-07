@@ -4,20 +4,39 @@ import { toast } from "react-toastify";
 import { motion } from "motion/react";
 const Services = () => {
   const [service, setService] = useState([]);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/services")
+    fetch(`https://pawmart-cyan.vercel.app/services?category=${category}`)
       .then((res) => res.json())
-      .then((data) => setService(data))
+      .then((data) => {
+        console.log(category);
+        setService(data);
+      })
       .catch((error) => toast.warning(error.message));
-  }, []);
+  }, [category]);
 
   return (
     <>
       <div className="container mx-auto py-15 px-2">
         <h2 className="text-3xl font-semibold text-center pb-10 ">
-          Popular Winter Care Services
+          Pets & Supplies
         </h2>
+        <div className="mb-10">
+          <select
+            name="category"
+            onChange={(e) => setCategory(e.target.value)}
+            defaultValue="Select a Category"
+            className="select"
+          >
+            <option disabled={true}>Select a Category</option>
+            <option value={""}>All</option>
+            <option value={"Pets"}>Pets</option>
+            <option value={"Food"}>Food</option>
+            <option value={"Accessories"}>Accessories</option>
+            <option value={"Care Products"}>Care Products</option>
+          </select>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {service &&

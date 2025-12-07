@@ -25,14 +25,21 @@ const Navbar = () => {
       </li>
 
       <li>
-        <NavLink to={"/services"}>Services</NavLink>
+        <NavLink to={"/services"}>Pets & Supplies</NavLink>
       </li>
-      <li>
-        <NavLink to={"/add-service"}>Add Service</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/profile"}>My Profile</NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to={"/add-service"}>Add Listing</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/my-service"}>My Listings</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/profile"}>My Profile</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (

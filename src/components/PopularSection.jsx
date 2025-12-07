@@ -6,7 +6,7 @@ const PopularSection = () => {
   const [service, setService] = useState([]);
 
   useEffect(() => {
-    fetch("./services.json")
+    fetch("https://pawmart-cyan.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setService(data))
       .catch((error) => {
@@ -28,24 +28,24 @@ const PopularSection = () => {
                 <div className="card bg-base-100 w-full shadow-sm hover:shadow-md sm:hover:scale-105 transition duration-300 ease-in-out">
                   <figure>
                     <img
-                      src={data?.image}
+                      src={data?.imgUrl}
                       className="w-full h-[250px] object-cover"
                       alt="Shoes"
                     />
                   </figure>
                   <div className="card-body">
-                    <h2 className="card-title">{data.serviceName}</h2>
+                    <h2 className="card-title">{data.name}</h2>
                     <p className="my-2">
                       {data.description}
                       {data.description}
                     </p>
                     <div className="flex justify-between">
                       <div>Price {data?.price}</div>
-                      <div>Rating {data?.rating}</div>
+                      <div>Rating {data?.category}</div>
                     </div>
                     <div className="card-actions justify-center mt-3 mb-5">
                       <Link
-                        to={`/services/${data?.serviceId}`}
+                        to={`/services/${data?._id}`}
                         className="btn btn-secondary hover:bg-white hover:text-secondary"
                       >
                         View Details

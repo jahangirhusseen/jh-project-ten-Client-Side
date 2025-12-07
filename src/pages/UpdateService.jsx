@@ -1,9 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
-const AddService = () => {
+const UpdateService = () => {
   const { user } = useContext(AuthContext);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [service, setService] = useState();
+  const [category, setCategory] = useState(service?.category);
+
+  useEffect(() => {
+    axios
+      .get(`https://pawmart-cyan.vercel.app/services/${id}`)
+      .then((res) => {
+        setService(res.data);
+        setCategory(res.data.category);
+      })
+      .catch((error) => toast.warning(error.message));
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,7 +29,6 @@ const AddService = () => {
     const price = parseInt(form.price.value.trim());
     const location = form.location.value.trim();
     const description = form.description.value.trim();
-    const email = form.email.value.trim();
     const date = form.date.value;
 
     const formData = {
@@ -23,31 +38,28 @@ const AddService = () => {
       price,
       location,
       description,
-      email,
+      email: service?.email,
+      createdAt: service?.createdAt,
       date,
     };
 
-    const missingFields = Object.entries(formData)
-      .filter(([_, value]) => !value)
-      .map(([key]) => key.charAt(0).toUpperCase() + key.slice(1));
-
-    if (missingFields.length > 0) {
-      alert(`Please fill the following fields:\n ${missingFields.join(", ")}`);
-      return;
-    }
-
     console.log(formData);
+
     axios
-      .post("https://pawmart-cyan.vercel.app/services", formData)
+      .put(`https://pawmart-cyan.vercel.app/update/${id}`, formData)
       .then((res) => {
-        console.log(res);
-        form.reset();
-      });
+        alert("successfuly Data Updated");
+        navigate("/my-service");
+      })
+      .catch((error) => toast.warning(error.message));
   };
+
   return (
     <div className="container mx-auto py-10">
       {/* Add Service Form */}
-
+      <h2 className="text-3xl font-semibold text-center pb-2 ">
+        Update Service Data
+      </h2>
       <div className="card mx-auto bg-base-100 w-full max-w-sm shrink-0 shadow-2xl my-5">
         <div className="card-body">
           <form className="mt-3" onSubmit={handleSubmit}>
@@ -55,6 +67,7 @@ const AddService = () => {
               <label className="label">Product Name</label>
               <input
                 name="name"
+                defaultValue={service?.name}
                 type="text"
                 className="input"
                 placeholder="Name"
@@ -63,6 +76,7 @@ const AddService = () => {
               <label className="label">Photo URL</label>
               <input
                 name="imgUrl"
+                defaultValue={service?.imgUrl}
                 type="text"
                 className="input"
                 placeholder="Photo URL"
@@ -70,22 +84,23 @@ const AddService = () => {
 
               <label className="label">Category</label>
               <select
+                value={category}
                 name="category"
-                defaultValue=""
                 className="select select-bordered"
+                onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="" disabled>
-                  Select a Category
-                </option>
-                <option>Pets</option>
-                <option>Food</option>
-                <option>Accessories</option>
-                <option>Care Products</option>
+                <option value="">Select a Category</option>
+                <option value="Pets">Pets</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Vehicles">Vehicles</option>
+                <option value="Food">Food</option>
               </select>
 
               <label className="label">Price</label>
               <input
                 name="price"
+                defaultValue={service?.price}
                 type="number"
                 className="input"
                 placeholder="Price (Ex: 5000)"
@@ -94,6 +109,7 @@ const AddService = () => {
               <label className="label">Location</label>
               <input
                 name="location"
+                defaultValue={service?.location}
                 type="text"
                 className="input"
                 placeholder="Location (Ex: Dhaka)"
@@ -102,25 +118,21 @@ const AddService = () => {
               <label className="label">Description</label>
               <textarea
                 name="description"
+                defaultValue={service?.description}
                 className="textarea textarea-bordered"
                 placeholder="Short Description"
               ></textarea>
 
-              <label className="label">Email</label>
+              <label className="label">Date</label>
               <input
-                name="email"
-                readOnly
-                defaultValue={user?.email}
-                type="email"
+                name="date"
+                defaultValue={service?.date}
+                type="date"
                 className="input"
-                placeholder="Email"
               />
 
-              <label className="label">Date</label>
-              <input name="date" type="date" className="input" />
-
               <button className="btn btn-secondary hover:bg-white hover:text-secondary mt-4">
-                Submit
+                Update
               </button>
             </fieldset>
           </form>
@@ -130,4 +142,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default UpdateService;

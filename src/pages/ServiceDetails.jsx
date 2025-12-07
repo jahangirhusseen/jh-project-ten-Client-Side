@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 const ServiceDetails = () => {
   const [service, setService] = useState([]);
   const { id } = useParams();
-// assets commponents context firebase layouts pages router
+  // assets commponents context firebase layouts pages router
   useEffect(() => {
-    fetch(`http://localhost:3000/services/${id}`)
+    fetch(`https://pawmart-cyan.vercel.app/services/${id}`)
       .then((res) => res.json())
       .then((data) => setService(data))
       .catch((error) => toast.warning(error.message));

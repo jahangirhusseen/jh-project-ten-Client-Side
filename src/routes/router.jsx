@@ -11,6 +11,8 @@ import ServiceDetails from "../pages/ServiceDetails";
 import ForgetPassword from "../pages/ForgetPassword";
 import ErrorPage from "../pages/ErrorPage";
 import AddService from "../pages/AddService";
+import MyServices from "../pages/MyServices";
+import UpdateService from "../pages/UpdateService";
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +47,30 @@ export const router = createBrowserRouter([
         path: "/registration",
         element: <Registration />,
       },
-      { path: "/add-service", element: <AddService /> },
+      {
+        path: "/add-service",
+        element: (
+          <PrivateRoute>
+            <AddService />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-service",
+        element: (
+          <PrivateRoute>
+            <MyServices />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-service/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateService />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/login",
         element: <Login />,
