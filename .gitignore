@@ -27,7 +27,7 @@ dist-ssr
 
 
 components/
-context/
+
 firebase/
 layouts/
 pages/
