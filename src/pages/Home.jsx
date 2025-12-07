@@ -12,7 +12,6 @@ const Home = () => {
       <PopularSection />
       <MeetOurVets />
       <WinterTips />
-      <NEWSLETTER />
     </>
   );
 };
