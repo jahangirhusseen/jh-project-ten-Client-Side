@@ -17,6 +17,7 @@ const Footer = () => {
                   onClick={() => Navigate("/")}
                 >
                   <img src={logo} className="w-16 h-16 rounded-full" alt="" />
+                  <h2 className="hidden md:flex">PawMart</h2>
                 </button>
               </h6>
               <p className="w-full lg:w-[310px]">

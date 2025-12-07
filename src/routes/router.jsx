@@ -13,11 +13,13 @@ import ErrorPage from "../pages/ErrorPage";
 import AddService from "../pages/AddService";
 import MyServices from "../pages/MyServices";
 import UpdateService from "../pages/UpdateService";
+import MyOrder from "../pages/MyOrder";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -64,6 +66,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/my-orders",
+        element: (
+          <PrivateRoute>
+            <MyOrder />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/update-service/:id",
         element: (
           <PrivateRoute>
@@ -78,10 +88,6 @@ export const router = createBrowserRouter([
       {
         path: "/forget/:userEmail",
         element: <ForgetPassword />,
-      },
-      {
-        path: "/*",
-        element: <ErrorPage />,
       },
     ],
   },

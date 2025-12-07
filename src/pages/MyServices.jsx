@@ -69,12 +69,6 @@ const MyServices = () => {
                     <td>
                       <div className="flex gap-2 justify-center">
                         <button
-                          className="btn btn-secondary"
-                          onClick={() => alert(data?._id)}
-                        >
-                          View
-                        </button>
-                        <button
                           className="btn btn-info"
                           onClick={() => handleEdit()}
                         >

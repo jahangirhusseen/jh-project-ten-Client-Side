@@ -36,7 +36,7 @@ const Navbar = () => {
             <NavLink to={"/my-service"}>My Listings</NavLink>
           </li>
           <li>
-            <NavLink to={"/profile"}>My Profile</NavLink>
+            <NavLink to={"/my-orders"}>My Orders</NavLink>
           </li>
         </>
       )}
@@ -81,6 +81,7 @@ const Navbar = () => {
               className="btn btn-ghost text-xl hover:bg-transparent hover:border-0"
             >
               <img src={logo} className="w-16 h-16 rounded-full" alt="" />
+              <h2 className="hidden md:flex">PawMart</h2>
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
@@ -89,22 +90,35 @@ const Navbar = () => {
           <div className="navbar-end">
             {user ? (
               <>
-                <img
-                  src={
-                    user?.photoURL
-                      ? user.photoURL
-                      : "https://img.icons8.com/?size=100&id=z-JBA_KtSkxG&format=png&color=000000"
-                  }
-                  className="w-10 h-10 rounded-full"
-                />
-                <a onClick={handleSignOutUser} className="btn">
-                  Sign Out
-                </a>
+                <div className="flex gap-2">
+                  <Link to={"/profile"}>
+                    <div className="w-10 rounded-full">
+                      <img
+                        className="rounded-full"
+                        src={
+                          user?.photoURL
+                            ? user.photoURL
+                            : "https://img.icons8.com/?size=100&id=z-JBA_KtSkxG&format=png&color=000000"
+                        }
+                      />
+                    </div>
+                  </Link>
+                  <a onClick={handleSignOutUser} className="btn">
+                    Log out
+                  </a>
+                </div>
               </>
             ) : (
-              <Link to={"/login"} className="btn">
-                Sign In
-              </Link>
+              <>
+                <div className="flex space-x-2">
+                  <Link to={"/login"} className="btn">
+                    Login
+                  </Link>
+                  <Link to={"/registration"} className="btn">
+                    Register
+                  </Link>
+                </div>
+              </>
             )}
           </div>
         </div>
