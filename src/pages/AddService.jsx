@@ -37,9 +37,10 @@ const AddService = () => {
     }
 
     console.log(formData);
-    axios
-      .post("http://localhost:3000/services", formData)
-      .then((res) => console.log(res));
+    axios.post("http://localhost:3000/services", formData).then((res) => {
+      console.log(res);
+      form.reset();
+    });
   };
   return (
     <div>
