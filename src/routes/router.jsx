@@ -14,6 +14,8 @@ import AddService from "../pages/AddService";
 import MyServices from "../pages/MyServices";
 import UpdateService from "../pages/UpdateService";
 import MyOrder from "../pages/MyOrder";
+import Category from "../components/Category";
+import CategoryDetails from "../components/CategoryDetails";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ServiceDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/category-filtered/:category",
+        element: (
+          <PrivateRoute>
+            <CategoryDetails />
           </PrivateRoute>
         ),
       },

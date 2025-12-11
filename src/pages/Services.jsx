@@ -33,7 +33,7 @@ const Services = () => {
             <option value={"Pets"}>Pets</option>
             <option value={"Food"}>Food</option>
             <option value={"Accessories"}>Accessories</option>
-            <option value={"Care Products"}>Care Products</option>
+            <option value={"Care-Products"}>Care Products</option>
           </select>
         </div>
 

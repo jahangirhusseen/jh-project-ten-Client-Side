@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 
@@ -23,32 +24,40 @@ const PopularSection = () => {
           {service &&
             service.map((data) => (
               <>
-                <div className="card bg-base-100 w-full shadow-sm hover:shadow-md sm:hover:scale-105 transition duration-300 ease-in-out">
-                  <figure>
-                    <img
-                      src={data?.imgUrl}
-                      className="w-full h-[250px] object-cover"
-                      alt="Shoes"
-                    />
-                  </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">{data.name}</h2>
+                <motion.div
+                  initial={{ scale: 0.9 }}
+                  animate={{
+                    scale: 1,
+                    transition: { duration: 2 },
+                  }}
+                >
+                  <div className="card bg-base-100 w-full shadow-sm hover:shadow-md sm:hover:scale-105 transition duration-300 ease-in-out">
+                    <figure>
+                      <img
+                        src={data?.imgUrl}
+                        className="w-full h-[250px] object-cover"
+                        alt="Shoes"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <h2 className="card-title">{data.name}</h2>
 
-                    <div className="flex justify-between">
-                      <div>Category : {data?.category}</div>
-                      <div>Price : {data?.price}</div>
-                    </div>
-                    <p className="my-2">{data.location}</p>
-                    <div className="card-actions justify-center mt-3 mb-5">
-                      <Link
-                        to={`/services/${data?._id}`}
-                        className="btn btn-secondary hover:bg-white hover:text-secondary"
-                      >
-                        View Details
-                      </Link>
+                      <div className="flex justify-between">
+                        <div>Category : {data?.category}</div>
+                        <div>Price : {data?.price}</div>
+                      </div>
+                      <p className="my-2">{data.location}</p>
+                      <div className="card-actions justify-center mt-3 mb-5">
+                        <Link
+                          to={`/services/${data?._id}`}
+                          className="btn btn-secondary hover:bg-white hover:text-secondary"
+                        >
+                          View Details
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </>
             ))}
         </div>
