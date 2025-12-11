@@ -6,7 +6,7 @@ const PopularSection = () => {
   const [service, setService] = useState([]);
 
   useEffect(() => {
-    fetch("https://pawmart-cyan.vercel.app/services")
+    fetch("https://pawmart-cyan.vercel.app/recentlisting")
       .then((res) => res.json())
       .then((data) => setService(data))
       .catch((error) => {
@@ -17,11 +17,11 @@ const PopularSection = () => {
   return (
     <>
       <div className="container mx-auto pt-15 pb-2 px-2">
-        <h2 className="contentTitle">Popular Winter Care Services</h2>
+        <h2 className="contentTitle">Recent Listings</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ">
           {service &&
-            service.slice(0, 6).map((data) => (
+            service.map((data) => (
               <>
                 <div className="card bg-base-100 w-full shadow-sm hover:shadow-md sm:hover:scale-105 transition duration-300 ease-in-out">
                   <figure>
@@ -33,14 +33,12 @@ const PopularSection = () => {
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">{data.name}</h2>
-                    <p className="my-2">
-                      {data.description}
-                      {data.description}
-                    </p>
+
                     <div className="flex justify-between">
-                      <div>Price {data?.price}</div>
-                      <div>Rating {data?.category}</div>
+                      <div>Category : {data?.category}</div>
+                      <div>Price : {data?.price}</div>
                     </div>
+                    <p className="my-2">{data.location}</p>
                     <div className="card-actions justify-center mt-3 mb-5">
                       <Link
                         to={`/services/${data?._id}`}

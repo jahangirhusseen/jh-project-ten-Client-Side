@@ -10,7 +10,6 @@ const Services = () => {
     fetch(`https://pawmart-cyan.vercel.app/services?category=${category}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(category);
         setService(data);
       })
       .catch((error) => toast.warning(error.message));

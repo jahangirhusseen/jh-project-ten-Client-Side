@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -36,11 +38,10 @@ const AddService = () => {
       return;
     }
 
-    console.log(formData);
     axios
       .post("https://pawmart-cyan.vercel.app/services", formData)
       .then((res) => {
-        console.log(res);
+        navigate("/");
         form.reset();
       });
   };
