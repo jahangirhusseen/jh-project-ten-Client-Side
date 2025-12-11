@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, NavLink } from "react-router";
+import { Link, Navigate, NavLink } from "react-router";
 import logo from "../assets/pet-care-logo.jpg";
 import { BsTwitter } from "react-icons/bs";
 import { LiaLinkedin } from "react-icons/lia";
@@ -21,18 +21,23 @@ const Footer = () => {
                 </button>
               </h6>
               <p className="w-full lg:w-[310px]">
-                Smart and caring solutions for your pet’s daily needs. From
-                grooming to health checkups, we cover everything. Keeping your
-                pets comfortable and stress-free every day.
+                PawMart connects local pet owners and buyers for adoption and
+                pet care products.
               </p>
             </nav>
             <nav>
               <h6 className="text-base font-semibold text-white/80 mb-3">
                 Company
               </h6>
-              <a className="link link-hover">About Us</a>
-              <a className="link link-hover">Our Mission</a>
-              <a className="link link-hover">Contact Saled</a>
+              <Link to={"/"} className="link link-hover">
+                Home
+              </Link>
+              <Link to={"/services"} className="link link-hover">
+                Contact
+              </Link>
+              <Link to={"/"} className="link link-hover">
+                Terms
+              </Link>
             </nav>
             <nav>
               <h6 className="text-base font-semibold text-white/80 mb-3">

@@ -15,3 +15,7 @@
 * {
   font-family: "Inter", sans-serif;
 }
+
+.contentTitle {
+  @apply text-3xl md:text-4xl font-extrabold text-accent mb-6 text-center pb-6;
+}

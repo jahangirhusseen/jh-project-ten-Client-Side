@@ -23,30 +23,33 @@ const Slider = () => {
       >
         <SwiperSlide>
           <div
-            className="bg-cover bg-center h-screen w-full flex justify-center items-center"
+            className="relative  bg-cover bg-center h-screen w-full flex justify-center items-center"
             style={{ backgroundImage: `url(${sliderOne})` }}
           >
-            <h2 className="text-white font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl  text-center px-4">
+            <div className="absolute inset-0 bg-accent/40"></div>
+            <h2 className="relative  text-white font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl  text-center px-4">
               Find Your Furry Friend Today!
             </h2>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="bg-cover bg-center h-screen w-full flex justify-center items-center"
+            className="relative bg-cover bg-center h-screen w-full flex justify-center items-center"
             style={{ backgroundImage: `url(${sliderTwo})` }}
           >
-            <h2 className="text-white font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl  text-center px-4">
+            <div className="absolute inset-0 bg-accent/40"></div>
+            <h2 className="relative text-white font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl  text-center px-4">
               Adopt, Don’t Shop — Give a Pet a Home.
             </h2>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="bg-cover bg-center h-screen w-full flex justify-center items-center"
+            className="relative bg-cover bg-center h-screen w-full flex justify-center items-center"
             style={{ backgroundImage: `url(${sliderThree})` }}
           >
-            <h2 className="text-white font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl  text-center px-4">
+            <div className="absolute inset-0 bg-accent/40"></div>
+            <h2 className="relative text-white font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl  text-center px-4">
               Because Every Pet Deserves Love and Care.
             </h2>
           </div>

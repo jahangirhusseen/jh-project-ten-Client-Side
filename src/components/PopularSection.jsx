@@ -16,10 +16,8 @@ const PopularSection = () => {
 
   return (
     <>
-      <div className="container mx-auto py-15 px-2">
-        <h2 className="text-3xl font-semibold text-center pb-10 ">
-          Popular Winter Care Services
-        </h2>
+      <div className="container mx-auto pt-15 pb-2 px-2">
+        <h2 className="contentTitle">Popular Winter Care Services</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ">
           {service &&
